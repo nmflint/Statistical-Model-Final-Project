@@ -17,7 +17,11 @@ library(tidyverse)
 ```{r}
 top2018<-rowid_to_column(top2018, var = "rowid")
 top2017<-rowid_to_column(featuresdf, var= "rowid")
-
-
+top2018%>%
+  rename(ranking=rowid)%>%
+  select(1, 3:17)
+top2017%>%
+  rename(ranking=rowid)%>%
+  select(1, 3:17)
 ```
 
