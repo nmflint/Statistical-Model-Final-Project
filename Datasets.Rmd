@@ -1,0 +1,23 @@
+---
+title: "Untitled"
+author: "Natalie Flint"
+date: "11/8/2019"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+data("top2018")
+library(tidyverse)
+```
+
+```{r}
+top2018<-rowid_to_column(top2018, var = "rowid")
+top2017<-rowid_to_column(featuresdf, var= "rowid")
+
+
+```
+
