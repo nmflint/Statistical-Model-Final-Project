@@ -12,16 +12,65 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 data("top2018")
 library(tidyverse)
+library(ggplot2)
+library(stats)
 ```
 
 ```{r}
 top2018<-rowid_to_column(top2018, var = "rowid")
 top2017<-rowid_to_column(featuresdf, var= "rowid")
-top2018%>%
+top2018=top2018%>%
   rename(ranking=rowid)%>%
   select(1, 3:17)
-top2017%>%
+top2017=top2017%>%
   rename(ranking=rowid)%>%
   select(1, 3:17)
+quantitative2018<-top2018%>%
+  select(1, 4:16)
+
+pairs(quantitative2018)
+```
+
+```{r}
+pairs(top2018[4:8])
+cor(top2018[5:16])
+```
+
+```{r}
+ggplot(data=top2017, aes(x=artists))+
+  geom_histogram(fill="green", color="black", stat="count")
+
+
+
+
+ggplot(data=top2017,aes(y=ranking, x=energy, color=artists, linetype=artists)) +
+  geom_point(size=3) +
+  labs(x="energy", y="ranking")
+
+
+ggplot(data=top2017, aes(y=ranking, x=danceability))+
+  geom_point()+
+  geom_smooth()
+
+ggplot(data=top2017, aes(y=ranking, x=energy))+
+  geom_point()+
+  geom_smooth()
+
+ggplot(data=top2017, aes(y=ranking, x=loudness))+
+  geom_point()+
+  geom_smooth()
+
+ggplot(data=top2017, aes(y=ranking, x=acousticness))+
+  geom_point()+
+  geom_smooth()
+
+ggplot(data=top2017, aes(y=ranking, x=tempo))+
+  geom_point()+
+  geom_smooth()
+
+ggplot(data=top2017, aes(y=speechiness, x=ranking))+
+  geom_point()+
+  geom_smooth()
+
 ```
 
